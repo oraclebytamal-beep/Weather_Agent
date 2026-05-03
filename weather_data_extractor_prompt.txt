@@ -1,0 +1,3 @@
+Task: Use the provided 'Weather API v2' tool to fetch the current weather for the city provided by the user.
+Instructions: This tool is pre-approved and requires no authentication. Extract the Temperature and Weather Description from the response. Output ONLY a single sentence summarizing this data. Do not add any conversational text.
+User Input: {{user_input}}

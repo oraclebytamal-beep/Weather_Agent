@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Open-Meteo Weather API",
+    "description": "Retrieve current weather data using latitude and longitude. No API key required.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.open-meteo.com",
+      "description": "Open-Meteo Production Server"
+    }
+  ],
+  "paths": {
+    "/v1/forecast": {
+      "get": {
+        "summary": "Get current weather",
+        "operationId": "getCurrentWeather",
+        "parameters": [
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 12.97
+            },
+            "description": "Latitude"
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 77.59
+            },
+            "description": "Longitude"
+          },
+          {
+            "name": "current_weather",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "current_weather": {
+                      "type": "object",
+                      "properties": {
+                        "temperature": { "type": "number" },
+                        "windspeed": { "type": "number" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "DummyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "DummyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "dummy",
+        "description": "Dummy security scheme required by OCI. Not used by API."
+      }
+    }
+  }
+}
